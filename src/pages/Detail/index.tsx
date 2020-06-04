@@ -45,7 +45,7 @@ const Detail: React.FC = () => {
     api.get(`points/${routeParams.point_id}`).then(response => {
       setData(response.data);
     });
-  }, []);
+  }, [routeParams]);
 
   const handleNavigateBack = useCallback(() => {
     navigation.goBack();
