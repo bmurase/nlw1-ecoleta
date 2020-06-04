@@ -96,9 +96,12 @@ const Points: React.FC = () => {
     navigation.goBack();
   }, [navigation]);
 
-  const handleNavigateToDetail = useCallback(() => {
-    navigation.navigate('Detail');
-  }, [navigation]);
+  const handleNavigateToDetail = useCallback(
+    (id: number) => {
+      navigation.navigate('Detail', { point_id: id });
+    },
+    [navigation],
+  );
 
   return (
     <>
@@ -127,7 +130,7 @@ const Points: React.FC = () => {
                 <Marker
                   key={String(point.id)}
                   style={styles.mapMarker}
-                  onPress={handleNavigateToDetail}
+                  onPress={() => handleNavigateToDetail(point.id)}
                   coordinate={{
                     latitude: point.latitude,
                     longitude: point.longitude,
