@@ -168,6 +168,7 @@ const CreatePoint: React.FC = () => {
 
       await api.post('points', data);
 
+      // eslint-disable-next-line no-alert
       alert('Ponto de coleta criado!');
 
       history.push('/');
