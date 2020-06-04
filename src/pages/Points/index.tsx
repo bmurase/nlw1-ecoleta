@@ -45,9 +45,9 @@ const Points: React.FC = () => {
     api
       .get('points', {
         params: {
-          city: 'Sinop',
-          uf: 'MT',
-          items: [1, 2],
+          city: 'Maringá',
+          uf: 'PR',
+          items: [6],
         },
       })
       .then(response => {
@@ -226,6 +226,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   mapMarkerImage: {
@@ -240,6 +241,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 13,
     lineHeight: 23,
+    textAlign: 'center',
   },
 
   itemsContainer: {
