@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, ScrollView, Image, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { SvgUri } from 'react-native-svg';
 import * as Location from 'expo-location';
@@ -23,6 +23,11 @@ interface Point {
   longitude: number;
 }
 
+interface Params {
+  uf: string;
+  city: string;
+}
+
 const Points: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
@@ -34,6 +39,9 @@ const Points: React.FC = () => {
   ]);
 
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const routeParams = route.params as Params;
 
   useEffect(() => {
     api.get('items').then(response => {
@@ -45,15 +53,15 @@ const Points: React.FC = () => {
     api
       .get('points', {
         params: {
-          city: 'Maringá',
-          uf: 'PR',
-          items: [6],
+          city: routeParams.city,
+          uf: routeParams.uf,
+          items: selectedItems,
         },
       })
       .then(response => {
         setPoints(response.data);
       });
-  }, []);
+  }, [selectedItems, routeParams]);
 
   useEffect(() => {
     async function loadPosition(): Promise<void> {
