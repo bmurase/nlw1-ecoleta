@@ -39,7 +39,6 @@ const Dropzone: React.FC<Props> = ({ onFileUpload }) => {
           Clique para selecionar ou arraste uma imagem do estabelecimento
         </p>
       )}
-      )}
     </div>
   );
 };
