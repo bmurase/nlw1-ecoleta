@@ -186,6 +186,7 @@ const CreatePoint: React.FC = () => {
       selectedPosition,
       selectedUf,
       selectedCity,
+      selectedFile,
       history,
     ],
   );
